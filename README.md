@@ -7,5 +7,10 @@ OpenSCAD-hs-Sketcher is a Haskell-based Domain Specific Language (DSL) for gener
 Create 2D sketches with Haskell code.
 Automatically generate OpenSCAD scripts.
 
+## Requirements
+It requires OpenSCAD with BOSL2 library installed. 
+
+For optimal performance, use the OpenSCAD developer snapshot and enable `use manifold` to achieve up to 100x faster rendering.
+
 ## Usage
-see `examples/Main.hs` for basic usage. sketch APIs are defined in `src/Sketch.hs`. Other OpenSCAD functions are defined in `src/OpenSCAD.hs`, which is almost the same as https://github.com/BrechtSerckx/OpenSCAD .
+See `examples/Main.hs` for basic usage. Sketch APIs are defined in `src/Sketch.hs`. Other OpenSCAD functions are defined in `src/OpenSCAD.hs`, which is almost the same as https://github.com/BrechtSerckx/OpenSCAD .
