@@ -8,7 +8,7 @@ Create 2D sketches with Haskell code.
 Automatically generate OpenSCAD scripts.
 
 ## Requirements
-It requires OpenSCAD with BOSL2 library installed. 
+The generated OpenSCAD code requires OpenSCAD with BOSL2 library installed. 
 
 For optimal performance, use the OpenSCAD development snapshot and enable `use manifold` to achieve up to 100x faster rendering.
 
