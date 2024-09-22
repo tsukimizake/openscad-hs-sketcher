@@ -111,23 +111,33 @@ generateFromList (Record origname fields) = do
 --   }
 --   deriving (Show)
 --
--- mkSketchRes ''Hoge makes:
+-- mkSketchRes ''Hoge
+--
+-- makes:
 --
 -- data HogeRes
---     = HogeRes {honi :: OpenSCAD.Model2d,
---                fuwa :: OpenSCAD.Vector2d,
---                poyo :: OpenSCAD.Model2d}
---                  deriving (Show)
--- instance SketchTypes.Models SketchTry.Hoge
---     where {type Res SketchTry.Hoge = HogeRes;
---            toList a = ([SketchTypes.wrapShape a.honi,
---                           SketchTypes.wrapShape a.fuwa,
---                           SketchTypes.wrapShape a.poyo],
---                          Data.Proxy.Proxy @SketchTry.Hoge);
---            fromList ([honi, fuwa, poyo],
---                        _proxy) = HogeRes{honi = SketchTypes.unwrapModelRes honi,
---                                          fuwa = SketchTypes.unwrapPointRes fuwa,
---                                          poyo = SketchTypes.unwrapModelRes poyo}}
+--   = HogeRes
+--   { honi :: OpenSCAD.Model2d,
+--     fuwa :: OpenSCAD.Vector2d,
+--     poyo :: OpenSCAD.Model2d
+--   }
+--   deriving (Show)
+--
+-- instance SketchTypes.Models SketchTry.Hoge where
+--   type Res SketchTry.Hoge = HogeRes
+--   toList a =
+--     ( [ SketchTypes.wrapShape a.honi,
+--         SketchTypes.wrapShape a.fuwa,
+--         SketchTypes.wrapShape a.poyo
+--       ],
+--       Data.Proxy.Proxy @SketchTry.Hoge
+--     )
+--   fromList ([honi, fuwa, poyo], _proxy) =
+--     HogeRes
+--       { honi = SketchTypes.unwrapModelRes honi,
+--         fuwa = SketchTypes.unwrapPointRes fuwa,
+--         poyo = SketchTypes.unwrapModelRes poyo
+--       }
 
 mkSketchRes :: Name -> Q [Dec]
 mkSketchRes recordname =
