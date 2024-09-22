@@ -31,6 +31,7 @@ data SolverState = SolverState
     intersections :: Intersections,
     wideLines :: WideLines
   }
+  deriving (Show)
 
 readStat :: SolverM SolverState
 readStat = do

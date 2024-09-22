@@ -54,16 +54,16 @@ library:
   - template-haskell
   - extensible
 
-  # executables:
-  #   examples:
-  #     main:                Main.hs
-  #     source-dirs:         app
-  #     ghc-options:
-  #     - -threaded
-  #     - -rtsopts
-  #     - -with-rtsopts=-N
-  #     dependencies:
-  #     - openscad-hs-sketcher
+executables:
+  examples:
+    main:                Main.hs
+    source-dirs:         examples
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - openscad-hs-sketcher
 tests:
   sketch-test:
     main:                SketchExamplesSpec.hs
