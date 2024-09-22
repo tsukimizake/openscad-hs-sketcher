@@ -19,8 +19,6 @@ module Sketch
     between,
     intersectionPoint,
     poly,
-    sketchPoly,
-    sketchPolys,
     rely,
     relx,
     onYAxis,
@@ -37,9 +35,8 @@ import Control.Monad.Freer
 import Control.Monad.Freer.State
 import Control.Monad.Freer.Writer (runWriter, tell)
 import Data.Function ((&))
-import qualified Data.List as List
-import OpenSCAD (Model2d, Model3d, Vector2d, Vector3d, errorAssert, linearExtrudeDefault, mirror, rotate3d, translate)
-import SketchSolver (runSolver, runSolver')
+import OpenSCAD (Model2d, Model3d, Vector2d, Vector3d, linearExtrudeDefault, mirror, rotate3d, translate)
+import SketchSolver (runSolver')
 import SketchTypes
 import Prelude hiding (id)
 import qualified Prelude
@@ -56,39 +53,6 @@ sketchRecord m =
           runSolver' (sks, cs)
             & either (error . show) (fromList . (,proxy))
       )
-
-sketchImpl :: SketchM ([Polygon], [Point]) -> ([Model2d], [Vector2d])
-sketchImpl m =
-  m
-    & fmap (\(polys, pts) -> (List.map wrapShape polys, pts))
-    & runState 0
-    & fmap fst
-    & runWriter
-    & run
-    & runSolver
-    & encodeError
-
-encodeError :: Either SketchError ([Model2d], [Vector2d]) -> ([Model2d], [Vector2d])
-encodeError = \case
-  Right r -> r
-  Left (Contradiction s) -> ([errorAssert s], [])
-  Left (Unresolved s) -> ([errorAssert s], [])
-
-sketchPolys :: SketchM [Polygon] -> [Model2d]
-sketchPolys m =
-  m
-    & fmap (,[])
-    & sketchImpl
-    & fst
-
-sketchPoly :: SketchM Polygon -> Model2d
-sketchPoly m =
-  m
-    & fmap (\apoly -> ([apoly], []))
-    & sketchImpl
-    & \case
-      ([r], []) -> r
-      e -> error $ show e
 
 --- POINT
 

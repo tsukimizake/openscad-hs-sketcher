@@ -99,3 +99,15 @@ class Models a where
   type Res a :: Type
   toList :: a -> ([Sketch], Proxy a)
   fromList :: ([Result], Proxy a) -> Res a
+
+instance Models Polygon where
+  type Res Polygon = Model2d
+  toList (Polygon ps) = ([Poly $ Polygon ps], Proxy)
+  fromList ([ModelRes m], _) = m
+  fromList _ = error "fromList"
+
+instance Models Point where
+  type Res Point = Vector2d
+  toList p = ([P $ Point p.x p.y p.chamfer], Proxy)
+  fromList ([PointRes m], _) = m
+  fromList _ = error "fromList"
