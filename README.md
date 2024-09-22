@@ -1,5 +1,5 @@
 # OpenSCAD-hs-Sketcher
-OpenSCAD-hs-Sketcher is a Haskell-based Domain Specific Language (DSL) for generating OpenSCAD code from 2D sketches. It allows users to model and design 2D objects programmatically, leveraging the power of Haskell's type system and functional programming.
+OpenSCAD-hs-Sketcher is a Haskell-based Domain Specific Language (DSL) for generating OpenSCAD code from 2D sketches. It allows users to build flexible, parametric models that adjust based on input parameters, ensuring efficient design workflows.
 
 ![example_screenshot](screenshot.png)
 
