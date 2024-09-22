@@ -12,5 +12,11 @@ It requires OpenSCAD with BOSL2 library installed.
 
 For optimal performance, use the OpenSCAD development snapshot and enable `use manifold` to achieve up to 100x faster rendering.
 
+## Setup
+
+- `git clone https://github.com/tsukimizake/openscad-hs-sketcher` on your stack project directory.
+- Add `openscad-hs-sketcher` to your `stack.yaml` packages.
+- Add `openscad-hs-sketcher` to your `package.yaml` dependencies.
+
 ## Usage
 See `examples/Main.hs` for basic usage. Sketch APIs are defined in `src/Sketch.hs`. Other OpenSCAD functions are defined in `src/OpenSCAD.hs`, which is almost the same as https://github.com/BrechtSerckx/OpenSCAD .
