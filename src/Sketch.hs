@@ -1,5 +1,4 @@
 {-# HLINT ignore "Use first" #-}
-{-# LANGUAGE TupleSections #-}
 {-# HLINT ignore "Use <$>" #-}
 {-# HLINT ignore "Functor law" #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}

@@ -39,6 +39,7 @@ library
       RankNTypes
       StandaloneDeriving
       BlockArguments
+      TupleSections
       OverloadedRecordDot
       NoFieldSelectors
       DuplicateRecordFields
@@ -79,6 +80,7 @@ executable examples
       RankNTypes
       StandaloneDeriving
       BlockArguments
+      TupleSections
       OverloadedRecordDot
       NoFieldSelectors
       DuplicateRecordFields
@@ -112,6 +114,7 @@ test-suite sketch-test
       RankNTypes
       StandaloneDeriving
       BlockArguments
+      TupleSections
       OverloadedRecordDot
       NoFieldSelectors
       DuplicateRecordFields

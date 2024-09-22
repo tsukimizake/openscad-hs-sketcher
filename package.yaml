@@ -29,6 +29,7 @@ default-extensions:
   - RankNTypes 
   - StandaloneDeriving 
   - BlockArguments
+  - TupleSections
   - OverloadedRecordDot
   - NoFieldSelectors
   - DuplicateRecordFields
