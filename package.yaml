@@ -1,0 +1,78 @@
+name:                openscad-hs-sketcher
+version:             0.1.0.0
+github:              "tsukimizake/openscad-hs-sketcher"
+author:              "tsukimizake"
+maintainer:          "shomasd🍥gmail.com"
+
+dependencies:
+- base >= 4.7 && < 5
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+
+default-extensions:
+  - LambdaCase
+  - DataKinds
+  - FlexibleContexts 
+  - FlexibleInstances 
+  - GADTs 
+  - OverloadedStrings 
+  - RankNTypes 
+  - StandaloneDeriving 
+  - BlockArguments
+  - OverloadedRecordDot
+  - NoFieldSelectors
+  - DuplicateRecordFields
+  - ScopedTypeVariables
+  - NamedFieldPuns
+  - TypeFamilies
+  - RecordWildCards
+  - DeriveGeneric
+  - TemplateHaskell
+  - TypeApplications
+
+library:
+  source-dirs: src
+  default-extensions:
+  - LambdaCase
+  dependencies:
+  - linear
+  - lens
+  - freer-simple
+  - colour
+  - containers
+  - prettyprinter
+  - template-haskell
+  - extensible
+
+  # executables:
+  #   examples:
+  #     main:                Main.hs
+  #     source-dirs:         app
+  #     ghc-options:
+  #     - -threaded
+  #     - -rtsopts
+  #     - -with-rtsopts=-N
+  #     dependencies:
+  #     - openscad-hs-sketcher
+tests:
+  sketch-test:
+    main:                SketchExamplesSpec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - openscad-hs-sketcher
+    - hspec
+

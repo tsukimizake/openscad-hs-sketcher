@@ -1,0 +1,98 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.36.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           openscad-hs-sketcher
+version:        0.1.0.0
+homepage:       https://github.com/tsukimizake/openscad-hs-sketcher#readme
+bug-reports:    https://github.com/tsukimizake/openscad-hs-sketcher/issues
+author:         tsukimizake
+maintainer:     shomasd🍥gmail.com
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/tsukimizake/openscad-hs-sketcher
+
+library
+  exposed-modules:
+      OpenSCAD
+      Sketch
+      SketchSolver
+      SketchTH
+      SketchTypes
+      UnionFind
+      Utils
+  other-modules:
+      Paths_openscad_hs_sketcher
+  hs-source-dirs:
+      src
+  default-extensions:
+      LambdaCase
+      DataKinds
+      FlexibleContexts
+      FlexibleInstances
+      GADTs
+      OverloadedStrings
+      RankNTypes
+      StandaloneDeriving
+      BlockArguments
+      OverloadedRecordDot
+      NoFieldSelectors
+      DuplicateRecordFields
+      ScopedTypeVariables
+      NamedFieldPuns
+      TypeFamilies
+      RecordWildCards
+      DeriveGeneric
+      TemplateHaskell
+      TypeApplications
+      LambdaCase
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.7 && <5
+    , colour
+    , containers
+    , extensible
+    , freer-simple
+    , lens
+    , linear
+    , prettyprinter
+    , template-haskell
+  default-language: Haskell2010
+
+test-suite sketch-test
+  type: exitcode-stdio-1.0
+  main-is: SketchExamplesSpec.hs
+  other-modules:
+      Paths_openscad_hs_sketcher
+  hs-source-dirs:
+      test
+  default-extensions:
+      LambdaCase
+      DataKinds
+      FlexibleContexts
+      FlexibleInstances
+      GADTs
+      OverloadedStrings
+      RankNTypes
+      StandaloneDeriving
+      BlockArguments
+      OverloadedRecordDot
+      NoFieldSelectors
+      DuplicateRecordFields
+      ScopedTypeVariables
+      NamedFieldPuns
+      TypeFamilies
+      RecordWildCards
+      DeriveGeneric
+      TemplateHaskell
+      TypeApplications
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hspec
+    , openscad-hs-sketcher
+  default-language: Haskell2010
