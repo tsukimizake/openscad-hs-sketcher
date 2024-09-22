@@ -1,6 +1,4 @@
-{-# OPTIONS_GHC -Wno-missing-export-lists #-}
-
-module SketchTH where
+module SketchTH (mkSketchRes) where
 
 import Data.Function ((&))
 import Data.Proxy
