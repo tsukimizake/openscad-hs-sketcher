@@ -15,7 +15,7 @@ For optimal performance, use the OpenSCAD development snapshot and enable `use m
 ## Setup
 
 - `git clone https://github.com/tsukimizake/openscad-hs-sketcher` on your stack project directory.
-- Add `openscad-hs-sketcher` to your `stack.yaml` packages.
+- Add `./openscad-hs-sketcher` to your `stack.yaml` packages.
 - Add `openscad-hs-sketcher` to your `package.yaml` dependencies.
 
 ## Usage
