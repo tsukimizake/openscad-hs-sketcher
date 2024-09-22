@@ -7,7 +7,7 @@
 module Sketch
   ( Sketch,
     wrapShape,
-    sketchRecord,
+    sketch,
     point,
     x,
     y,
@@ -41,8 +41,8 @@ import SketchTypes
 import Prelude hiding (id)
 import qualified Prelude
 
-sketchRecord :: (Models m) => SketchM m -> Res m
-sketchRecord m =
+sketch :: (Models m) => SketchM m -> Res m
+sketch m =
   m
     & fmap toList
     & runState 0

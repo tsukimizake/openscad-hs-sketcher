@@ -23,7 +23,7 @@ main :: IO ()
 main =
   do
     let resz =
-          sketchRecord do
+          sketch do
             -- can't use rectSketch for contradiction on using rectCenter
             a <- point & x 0 & y 0
             b <- point & x 4 & y 0
@@ -32,11 +32,11 @@ main =
             base <- poly [a, b, c, d]
             centerPoint <- rectCenter a b c d
             pure $ Z {..}
-    let resy = sketchRecord do
+    let resy = sketch do
           (a, b, c, d) <- rectSketch (point & x 0 & y 0) (\a_ -> point & relx a_ 4 & rely a_ 4)
           ySide <- poly [a, b, c, d]
           pure $ Y {..}
-    let resx = sketchRecord do
+    let resx = sketch do
           a <- point & x 0 & y 0
           b <- point & x 4 & y 0
           c <- point & relx b (-0.5) & y 4
