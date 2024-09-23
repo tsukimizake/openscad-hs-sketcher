@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
 {-# HLINT ignore "Avoid lambda" #-}
-module SketchSolver (runSolver, runSolver') where
+module SketchSolver (runSolver) where
 
 import Control.Applicative (liftA3)
 import Control.Monad (forM)
@@ -11,11 +11,9 @@ import Control.Monad.Freer.Reader (ask, runReader)
 import Control.Monad.Freer.State
 import Data.Either
 import Data.Function ((&))
-import Data.Functor ((<&>))
 import Data.Kind (Type)
-import qualified Data.List as List
 import Data.Maybe
-import OpenSCAD (Model2d, Vector2d, polygon)
+import OpenSCAD (polygon)
 import SketchTypes
 import UnionFind (emptyUF, find, union)
 import Prelude hiding (atan2, cos, id, sin, tan)
@@ -39,8 +37,8 @@ readStat = do
   (onLines, sk, intersections, wideLines) <- ask
   pure $ SolverState uf onLines exacts pluses eqs sk intersections wideLines
 
-runSolver' :: ([Sketch], [Constraint]) -> Either SketchError [Result]
-runSolver' (models, cs) =
+runSolver :: ([Sketch], [Constraint]) -> Either SketchError [Result]
+runSolver (models, cs) =
   let onLines = mapMaybe (\case OnLine p l -> Just (p, l); _ -> Nothing) cs
       exacts = mapMaybe (\case Exact id v -> Just (id, v); _ -> Nothing) cs
       eqs = mapMaybe (\case Eq l r -> Just (l, r); _ -> Nothing) cs
@@ -53,27 +51,6 @@ runSolver' (models, cs) =
       )
         & runState (emptyUF, eqs, exacts, pluses)
         & runReader (onLines, models, intersections, wideLines)
-        & runError
-        & run
-        & fmap fst
-
-runSolver :: (([Sketch], [Point]), [Constraint]) -> Either SketchError ([Model2d], [Vector2d])
-runSolver ((sketches, points), cs) =
-  let onLines = mapMaybe (\case OnLine p l -> Just (p, l); _ -> Nothing) cs
-      exacts = mapMaybe (\case Exact id v -> Just (id, v); _ -> Nothing) cs
-      eqs = mapMaybe (\case Eq l r -> Just (l, r); _ -> Nothing) cs
-      intersections = mapMaybe (\case Intersection l r p -> Just (l, r, p); _ -> Nothing) cs
-      pluses = mapMaybe (\case Plus l r d -> Just (l, r, d); _ -> Nothing) cs
-      wideLines = mapMaybe (\case WideLine w l r -> Just (w, l, r); _ -> Nothing) cs
-   in ( repeatUntilFixpoint (solveIntersections >> solveOnLines >> solvePluses >> solveWideLines >> solveUf)
-          >> validateAllJust
-          >> generateModel
-          <&> partitionEithers . List.map \case
-            ModelRes m -> Left m
-            PointRes (px, py) -> Right (px, py)
-      )
-        & runState (emptyUF, eqs, exacts, pluses)
-        & runReader (onLines, sketches ++ List.map P points, intersections, wideLines)
         & runError
         & run
         & fmap fst

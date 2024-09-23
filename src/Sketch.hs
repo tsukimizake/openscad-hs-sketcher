@@ -35,7 +35,7 @@ import Control.Monad.Freer.State
 import Control.Monad.Freer.Writer (runWriter, tell)
 import Data.Function ((&))
 import OpenSCAD (Model2d, Model3d, Vector2d, Vector3d, linearExtrudeDefault, mirror, rotate3d, translate)
-import SketchSolver (runSolver')
+import SketchSolver (runSolver)
 import SketchTypes
 import Prelude hiding (id)
 import qualified Prelude
@@ -49,7 +49,7 @@ sketch m =
     & runWriter
     & run
     & ( \((sks, proxy), cs) ->
-          runSolver' (sks, cs)
+          runSolver (sks, cs)
             & either (error . show) (fromList . (,proxy))
       )
 
