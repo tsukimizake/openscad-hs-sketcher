@@ -13,6 +13,7 @@ The generated OpenSCAD code requires OpenSCAD with BOSL2 library installed.
 For optimal performance, use the OpenSCAD development snapshot and enable `use manifold` to achieve up to 100x faster rendering.
 
 ## Setup
+use https://github.com/tsukimizake/openscad-hs-sketcher-template or
 
 - `git clone https://github.com/tsukimizake/openscad-hs-sketcher` on your stack project directory.
 - Add `./openscad-hs-sketcher` to your `stack.yaml` packages.
