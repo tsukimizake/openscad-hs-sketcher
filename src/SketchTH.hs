@@ -21,7 +21,7 @@ mkResRecord (Record origName _) = do
   getFields origName >>= \case
     recfields -> do
       let resFields = fmap (\(n, t) -> (toBaseName n, Bang Language.Haskell.TH.NoSourceUnpackedness Language.Haskell.TH.NoSourceStrictness, getResType t)) recfields
-      pure $ DataD [] resName [] Nothing [RecC resName resFields] [DerivClause Nothing [ConT ''Show]]
+      pure $ DataD [] resName [] Nothing [RecC resName resFields] [DerivClause Nothing [ConT ''Show, ConT ''Eq]]
 
 getFields :: Name -> Q [(Name, Type)]
 getFields name = do
