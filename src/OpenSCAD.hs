@@ -395,7 +395,7 @@ data Solid
   | Polyhedron Int [Vector3d] Sides
   | Surface FilePath Bool Int
   | Screw ScrewSize ScrewHead Int
-  | ScrewHole ScrewSize Int Bool
+  | ScrewHole ScrewSize ScrewHead Int Bool
   deriving (Show, Eq)
 
 -- | ISO only
@@ -545,8 +545,8 @@ obCylinder r1 h r2 f = pure $ Solid $ ObCylinder r1 h r2 f
 screw :: ScrewSize -> ScrewHead -> Int -> Model3d
 screw s h l = Solid $ Screw s h l
 
-screwHole :: ScrewSize -> Int -> Bool -> Model3d
-screwHole s l thread = Solid $ ScrewHole s l thread
+screwHole :: ScrewSize -> ScrewHead -> Int -> Bool -> Model3d
+screwHole s h l thread = Solid $ ScrewHole s h l thread
 
 with :: (Vector v) => ([Model v] -> Model v) -> Model v -> Model v -> Model v
 with f a b = f [a, b]
@@ -937,7 +937,7 @@ instance PP.Pretty Solid where
           namedArg "convexity" $ PP.pretty c
         ]
     Screw size hd len -> renderAction "screw" [PP.pretty size, namedArg "head" $ PP.pretty hd, namedArg "length" $ PP.pretty len]
-    ScrewHole size len hasThread -> renderAction "screw_hole" [PP.pretty size, namedArg "length" $ PP.pretty len, namedArg "thread" $ renderBool hasThread]
+    ScrewHole size hd len hasThread -> renderAction "screw_hole" [PP.pretty size, namedArg "head" $ PP.pretty hd, namedArg "length" $ PP.pretty len, namedArg "thread" $ renderBool hasThread]
 
 facetsToArgs :: Facets -> [PP.Doc ann]
 facetsToArgs (Facets fa' fs' fn') =
